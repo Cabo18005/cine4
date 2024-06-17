@@ -1,0 +1,171 @@
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: #ffb3b3; /* Fondo de color */
+   margin: 0;
+   font-family: 'Arial', sans-serif;
+}
+
+.container {
+   position: relative;
+   width: 80%;
+   max-width: 600px;
+   height: 60%;
+   max-height: 400px;
+}
+
+.envelope {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: #FFCC00;
+   border: 2px solid #FF9900;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: transform 0.6s, box-shadow 0.3s;
+   transform-style: preserve-3d;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.envelope:hover {
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.envelope .clickable-area {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   z-index: 4;
+   cursor: pointer;
+}
+
+.envelope .flap {
+   position: absolute;
+   width: 100%;
+   height: 50%;
+   background-color: #FFCC00;
+   border-bottom: 2px solid #FF9900;
+   border-top-left-radius: 8px;
+   border-top-right-radius: 8px;
+   transform-origin: top;
+   transition: transform 0.6s;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+   z-index: 2;
+}
+
+.envelope .body {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: #FFCC00;
+   border-bottom-left-radius: 8px;
+   border-bottom-right-radius: 8px;
+   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+   z-index: 1;
+}
+
+.envelope .seal {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 10vw;
+   height: 10vw;
+   max-width: 60px;
+   max-height: 60px;
+   background-color: #FF9900;
+   border-radius: 50%;
+   transform: translate(-50%, -50%);
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+   transition: transform 0.6s;
+   z-index: 3;
+   cursor: pointer; /* Hace que el cursor cambie a una mano */
+}
+
+.invitation {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: white;
+   border: 2px solid #FF9900;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+   opacity: 0;
+   transform: translateY(20px);
+   transition: opacity 0.6s, transform 0.6s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.invitation-content {
+   position: relative;
+   width: 90%;
+   height: 90%;
+}
+
+.invitation img {
+   max-width: 100%;
+   height: auto;
+}
+
+.details {
+   position: absolute;
+   top: 20%;
+   left: 50%;
+   transform: translateX(-50%);
+   background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+   animation: fadeIn 1s forwards;
+}
+
+.buttons {
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   margin-top: 10px;
+}
+
+.invitation button {
+   padding: 10px 20px;
+   background-color: #FF9900;
+   border: none;
+   color: white;
+   cursor: pointer;
+   transition: background-color 0.3s;
+}
+
+.invitation button:hover {
+   background-color: #FFCC00;
+}
+
+.envelope.open .flap {
+   transform: rotateX(-180deg);
+}
+
+.envelope.open .body {
+   opacity: 0;
+}
+
+.envelope.open .seal {
+   transform: translate(-50%, -50%) scale(0);
+}
+
+.envelope.open ~ .invitation {
+   opacity: 1;
+   transform: translateY(0);
+}
+
+@keyframes fadeIn {
+   from {
+       opacity: 0;
+       transform: translateY(10px);
+   }
+   to {
+       opacity: 1;
+       transform: translateY(0);
+   }
+}
